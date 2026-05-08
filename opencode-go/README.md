@@ -99,6 +99,26 @@ opencode serve --hostname 127.0.0.1 --port 37915 &
 | **Metis/Momus** (review) | `qwen3.6-plus` | `deepseek-v4-pro` / `kimi-k2.6` |
 | **Atlas** (ejecutor) | `deepseek-v4-pro` | `deepseek-v4-flash` |
 
+## Cómo se derivó esta configuración
+
+Oh My OpenAgent está diseñado para **multi-proveedor** (Anthropic, OpenAI, Google, OpenCode Go, etc.). Sus cadenas internas (`fallbackChain`) recomiendan modelos de diferentes proveedores según el rol de cada agente.
+
+Esta configuración **traduce** esas recomendaciones al ecosistema **OpenCode Go**, asignando el modelo equivalente del mismo tier:
+
+| Agente | Recomendación OMO | Modelo Go asignado | Tier | Razón |
+|---|---|---|---|---|
+| **Sisyphus** | Claude Opus 4.7 (Anthropic) | `kimi-k2.6` | 3 Élite | Mejor agentic/orchestration en Go |
+| **Oracle** | GPT-5.5 / Gemini-3.1-Pro | `glm-5.1` | 3 Élite | Mejor reasoning y planning en Go |
+| **Prometheus** | Claude Opus 4.7 / GPT-5.5 | `glm-5.1` | 3 Élite | Mejor spec-writing en Go |
+| **Hephaestus** | GPT-5.5 (OpenAI) | `deepseek-v4-pro` | 2 Estándar | Generalista principle-driven equivalente |
+| **Atlas** | Claude Sonnet 4.6 / Kimi K2.5 | `deepseek-v4-pro` | 2 Estándar | Ejecución balanceada |
+| **Librarian** | GPT-5.4-mini-fast | `deepseek-v4-flash` | 1 Volumen | Equivalente en velocidad/coste |
+| **Explore** | GPT-5.4-mini-fast | `deepseek-v4-flash` | 1 Volumen | Búsquedas masivas, nunca rate-limited |
+| **Code-reviewer** | (Sin chain propia) | `kimi-k2.6` | 3 Élite | Máxima calidad para review crítico |
+| **Metis/Momus** | Claude Opus / GPT-5.5 | `qwen3.6-plus` | 2 Estándar | Análisis y review balanceado |
+
+**Clave:** No es una copia literal de las `fallbackChain` del plugin (eso requeriría Anthropic, OpenAI, Google). Es una **traducción deliberada** de la filosofía de OMO al plan Go.
+
 ## Actualizar modelos
 
 Cuando OpenCode añada nuevos modelos o retire otros:
