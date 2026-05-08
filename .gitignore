@@ -1,0 +1,21 @@
+# Auth credentials
+auth.json
+*.backup*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+
+# Temporary files
+*.tmp
+*.temp
