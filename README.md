@@ -1,5 +1,8 @@
 # OpenCode + OMO
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hrodres/opencode-omo-sota)](https://github.com/hrodres/opencode-omo-sota/commits/main)
+
 > **Routing SOTA para OpenCode + OMO**
 >
 > Fuente de verdad operativa para configuraciones de [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) con planes de modelo específicos.

@@ -1,6 +1,8 @@
 # Auth credentials
 auth.json
-*.backup*
+
+# Backups of oh-my-openagent.json
+oh-my-openagent.json.backup*
 
 # OS files
 .DS_Store
