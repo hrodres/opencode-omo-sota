@@ -182,6 +182,69 @@ opencode auth login
 - **Zen está desconectado por defecto:** Para evitar consumo accidental de créditos de API de pago.
 - **Configuración basada en:** Artículo de Jatin K Malik + adaptación a modelos reales disponibles en OpenCode Go.
 
+## FAQ
+
+### ¿Este JSON instala OpenCode y Oh My OpenAgent automáticamente?
+
+**No.** Solo copia la configuración. Debes tener ya instalados:
+- OpenCode (`opencode --version`)
+- Oh My OpenAgent (`bunx oh-my-openagent install`)
+- Auth activo (`opencode auth login`)
+
+El script `setup.sh` automatiza la copia del JSON con validaciones, pero no instala software.
+
+### ¿Puedo añadir modelos de Zen a los fallbacks?
+
+Puedes, pero este repo está diseñado para evitarlo. Si necesitas Zen:
+- **Opción A:** Conecta Zen manualmente (`opencode auth login`) solo cuando lo necesites
+- **Opción B:** Crea o usa el preset `zen/` si se añade al repo
+
+Zen no aparece en los fallbacks para evitar consumo accidental de créditos de API.
+
+### ¿Por qué no incluyes `big-pickle` como fallback?
+
+Porque si todos los modelos Go fallan, preferimos un **error limpio** antes que degradar silenciosamente a un modelo de calidad mucho inferior. Puedes añadir `"opencode/big-pickle"` al final de `fallback_models` si prefieres que nunca falle.
+
+### ¿Cómo sé si el tiered routing realmente funciona?
+
+Revisa los logs después de una sesión con delegación:
+```bash
+# Último log
+ls -lt ~/.local/share/opencode/log/ | head -1
+
+# Verificar modelos por agente
+grep "service=llm" ~/.local/share/opencode/log/TIMESTAMP.log | grep -E "agent=Sisyphus|agent=librarian"
+```
+
+**Esperado:**
+- `agent=Sisyphus` → `modelID=kimi-k2.6`
+- `agent=librarian` → `modelID=deepseek-v4-flash`
+
+Si ambos usan `kimi-k2.6`, revisa que el plugin OMO esté cargado en `opencode.json`.
+
+### ¿Qué hago si un modelo desaparece de `opencode models opencode-go`?
+
+1. Ejecuta `opencode models opencode-go` para ver disponibilidad actual
+2. Busca el equivalente del **mismo tier**:
+   - Si falta un Tier 3 (élite), busca otro Tier 3
+   - Si falta un Tier 1 (volumen), busca otro Tier 1
+3. Actualiza `oh-my-openagent.json` con el nuevo modelo
+4. Valida JSON: `python3 -m json.tool oh-my-openagent.json`
+
+### ¿Puedo usar esta config en mi laptop en lugar de un LXC?
+
+Sí. El JSON es independiente de la infraestructura. Solo asegúrate de que:
+- `opencode serve` esté corriendo donde esté el JSON
+- `~/.config/opencode/oh-my-openagent.json` esté accesible
+
+La diferencia es que en un LXC el servidor siempre está encendido y accesible desde OpenChamber.
+
+### ¿Cómo actualizo cuando salen nuevos modelos?
+
+1. Revisa `PROMPT.md` en esta carpeta → sección "ACTUALIZACIÓN"
+2. Sigue los pasos: `opencode models opencode-go` → comparar → actualizar → validar
+3. O ejecuta `./setup.sh opencode-go` tras editar el JSON
+
 ## Mantenimiento
 
 - Revisar modelos disponibles cada mes (`opencode models opencode-go`)
