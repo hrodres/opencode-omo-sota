@@ -1,6 +1,8 @@
-# OpenCode OMO SOTA
+# OpenCode + OMO
 
-> **Fuente de verdad operativa** para configuraciones de [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) con planes de modelo específicos.
+> **Routing SOTA para OpenCode + OMO**
+>
+> Fuente de verdad operativa para configuraciones de [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) con planes de modelo específicos.
 
 ## ¿Qué es esto?
 
