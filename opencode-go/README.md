@@ -25,6 +25,17 @@
 
 ### 2. Aplicar configuración
 
+**Opción A: Script automatizado (desde la raíz del repo)**
+
+```bash
+cd ..
+./setup.sh opencode-go
+```
+
+Esto hace backup automático, valida JSON, detecta Zen conectado, y verifica modelos.
+
+**Opción B: Manual**
+
 ```bash
 # Backup de tu config actual (si existe)
 cp ~/.config/opencode/oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json.backup-$(date +%Y%m%d)

@@ -41,6 +41,16 @@ cd opencode-omo-sota
 # O instalar manualmente siguiendo la guía de opencode-go/README.md
 ```
 
+### ⚠️ Importante: `setup.sh` no instala software
+
+**`setup.sh` solo copia y valida la configuración JSON.** No instala OpenCode, Oh My OpenAgent ni ninguna dependencia. Asume que ya tienes:
+
+- [OpenCode](https://opencode.ai/) instalado (`opencode --version`)
+- [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) instalado (`bunx oh-my-openagent install`)
+- Suscripción activa (`opencode auth login`)
+
+Si necesitas instalar el software desde cero, sigue la guía completa en [`opencode-go/README.md`](opencode-go/README.md).
+
 Para más detalles, ver [`opencode-go/README.md`](opencode-go/README.md).
 
 ## Filosofía: Tiered Model Routing
