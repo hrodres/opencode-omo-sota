@@ -68,16 +68,15 @@ No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe 
 
 **Regla de oro:** Si una tarea requiere más de 100 requests, empieza por Tier 1 y escala solo si se atasca.
 
-## ¿Qué puedes construir?
+## Capacidades de los modelos
 
-Consulta [`docs/capabilities.md`](docs/capabilities.md) para una evaluación honesta de qué proyectos son ideales, cuáles son posibles con limitaciones, y cuáles están fuera de alcance.
+Consulta [`docs/capabilities.md`](docs/capabilities.md) para benchmarks y evaluación de los modelos configurados.
 
-**Para proyectos con UI de calidad:** OMO es un ingeniero excelente pero diseñador mediocre. Consulta [`docs/ui-workflow.md`](docs/ui-workflow.md) para aprender a combinar OMO con herramientas especializadas (v0.dev, Bolt.new, Figma) y crear webs con buen diseño.
-
-**Resumen rápido:**
-- ✅ **Ideal:** APIs, backends, SaaS, automatizaciones, dashboards
-- ⚠️ **Posible:** Frontend funcional, apps móviles básicas, análisis de imágenes
-- ❌ **No puede:** Diseño gráfico, generación de imágenes/video/audio, branding
+**Resumen:**
+- **V4 Pro:** Excelente para backend y APIs (LiveCodeBench 93.5%)
+- **K2.6:** Óptimo para orquestación y agentic
+- **GLM-5.1:** Mejor reasoning para planning y arquitectura
+- **MiMo V2.5:** Multimodal (lectura de imágenes, no generación)
 
 ## Planes disponibles
 
