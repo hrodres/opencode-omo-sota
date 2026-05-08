@@ -72,6 +72,8 @@ No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe 
 
 Consulta [`docs/capabilities.md`](docs/capabilities.md) para una evaluación honesta de qué proyectos son ideales, cuáles son posibles con limitaciones, y cuáles están fuera de alcance.
 
+**Para proyectos con UI de calidad:** OMO es un ingeniero excelente pero diseñador mediocre. Consulta [`docs/ui-workflow.md`](docs/ui-workflow.md) para aprender a combinar OMO con herramientas especializadas (v0.dev, Bolt.new, Figma) y crear webs con buen diseño.
+
 **Resumen rápido:**
 - ✅ **Ideal:** APIs, backends, SaaS, automatizaciones, dashboards
 - ⚠️ **Posible:** Frontend funcional, apps móviles básicas, análisis de imágenes
