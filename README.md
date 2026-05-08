@@ -15,12 +15,33 @@ Cada carpeta representa un **plan de suscripción** (`opencode-go/`, `zen/`, etc
 ```
 opencode-omo-sota/
 ├── README.md              # Este archivo
+├── setup.sh               # Script de instalación automatizada
 ├── opencode-go/           # Plan OpenCode Go ($10/mes)
 │   ├── oh-my-openagent.json  # Configuración operativa
 │   ├── PROMPT.md             # Prompt para recrear/actualizar
 │   └── README.md             # Guía específica del plan
-└── .gitignore
+├── docs/
+│   ├── verification.md     # Checklist post-configuración
+│   ├── session-example.md  # Caso de uso real
+│   ├── architecture.md     # Stack completo
+│   └── reference/          # Materiales de referencia
+└── CHANGELOG.md
 ```
+
+## Instalación rápida
+
+```bash
+# Clonar repo
+git clone https://github.com/hrodres/opencode-omo-sota.git
+cd opencode-omo-sota
+
+# Instalar configuración (backup automático, validación JSON, verificación de auth)
+./setup.sh opencode-go
+
+# O instalar manualmente siguiendo la guía de opencode-go/README.md
+```
+
+Para más detalles, ver [`opencode-go/README.md`](opencode-go/README.md).
 
 ## Filosofía: Tiered Model Routing
 
