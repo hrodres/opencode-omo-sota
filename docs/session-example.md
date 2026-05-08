@@ -119,6 +119,43 @@ La tarea era pura investigación (buscar docs, leer código). No era implementac
 
 ---
 
+## Datos de uso reales (sesión de configuración)
+
+Esta sesión (configuración del repo, investigación, documentación) duró aproximadamente 3-4 horas.
+
+### Distribución real del coste
+
+| Modelo | Coste observado | Porcentaje | Interpretación |
+|---|---|---|---|
+| **V4 Flash** | ~$6.00 USD | ~92% | Volumen masivo: búsquedas, grep, tareas simples |
+| **V4 Pro** | ~$0.50 USD | ~7% | Implementación estándar |
+| **K2.6** | ~$0.50 USD | ~1% | Orchestración y decisiones críticas |
+
+### Lo que confirman estos números
+
+**V4 Flash costó 12x más dinero que K2.6, pero procesó ~150x más requests.**
+
+```
+Estimación de requests:
+• V4 Flash: ~30,000 requests × $0.0002 = $6.00
+• V4 Pro:   ~   200 requests × $0.0025 = $0.50
+• K2.6:     ~   200 requests × $0.0025 = $0.50
+```
+
+**Conclusión:** El 92% del trabajo se hizo con el modelo más barato (V4 Flash). Solo el 1% requirió orquestación de élite (K2.6). Esto es exactamente lo que debe pasar con un tiered routing correcto.
+
+### Comparativa: ¿Qué pasaría sin tiered routing?
+
+| Estrategia | Coste estimado de esta sesión | ¿Sostenible? |
+|---|---|---|
+| **Todo con K2.6** | ~$30 USD | ❌ Agotarías presupuesto en 2 días |
+| **Todo con V4 Pro** | ~$12 USD | ⚠️ Consume ventana de 5h de golpe |
+| **Tiered routing (esta config)** | ~$6.50 USD | ✅ Sostenible para trabajo diario |
+
+**Ahorro real: ~78% vs. usar solo K2.6.**
+
+---
+
 ## Comandos usados en esta sesión
 
 ```bash

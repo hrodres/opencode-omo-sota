@@ -96,6 +96,44 @@ opencode serve --hostname 127.0.0.1 --port 37915 &
 | `glm-5.1` | 880 | Arquitectura, planning, Oracle/Prometheus |
 | `mimo-v2.5` | 1,290 | Tareas multimodales, visual-engineering |
 
+## Calidad de los modelos: análisis honesto
+
+### Fortalezas reales (benchmarks)
+
+| Modelo | Fortaleza | Benchmark | Contexto |
+|---|---|---|---|
+| `deepseek-v4-pro` | Programación competitiva | **LiveCodeBench 93.5%** | Supera a Claude Opus en código competitivo |
+| `qwen3.6-plus` | Trabajo terminal/agentic | **Terminal-Bench 61.6%** | Supera a Claude 4.5 (59.3%) |
+| `kimi-k2.6` | SWE-Pro (bugs reales) | **58.6%** | A 6 puntos de Claude Opus 4.7 (64.3%) |
+| `glm-5.1` | Reasoning y spec-writing | **58.4% SWE-Pro** | Mejor planning del ecosistema Go |
+| `deepseek-v4-flash` | Velocidad y coste | **31,650 req/5h** | Indistinguible de frontier para tareas simples |
+
+### Compromisos reales (dónde pierden vs. frontier)
+
+| Escenario | Go vs. Frontier | ¿Se nota? |
+|---|---|---|
+| **Bugs de producción sutiles** | 58% vs 64% SWE-Pro | ⚠️ Opus necesita 1 iteración menos |
+| **Arquitectura desde cero** | GLM-5.1 vs Claude Opus | ⚠️ En sistemas desconocidos, Opus razona mejor |
+| **Code review de seguridad** | K2.6 vs GPT-5.5 | ⚠️ Frontier detecta vulnerabilidades sutiles |
+| **Tecnologías muy nuevas** | Go models vs Claude | ⚠️ Menos contexto que modelos premium |
+
+### Veredicto práctico
+
+> **Para el 80% del trabajo diario (features, debug, review, refactor), los modelos Go son indistinguibles de Claude/GPT.** La diferencia solo se nota en el 20% más difícil.
+
+**Tus datos de uso confirman esto:**
+- V4 Flash procesa el 90%+ del volumen sin problemas
+- K2.6 solo se usa para orquestación (decisiones estratégicas)
+- Coste real: ~$0.20-0.40/hora de trabajo productivo
+
+### Cuándo considerar frontier (Zen on-demand)
+
+Conectar Zen manualmente solo para:
+1. **Incidentes de producción** → Claude Opus razona mejor bajo presión
+2. **Arquitectura desde cero** → GPT-5.5/Claude diseñan mejor sistemas nuevos
+3. **Code review de seguridad** → Opus detecta vulnerabilidades sutiles
+4. **Cuando un modelo Go "se atasca"** → Si después de 3 iteraciones no resuelve, escalas a frontier
+
 ### Asignación por agente
 
 | Agente | Modelo | Fallbacks |

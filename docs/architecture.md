@@ -170,6 +170,58 @@ Si todo hubiera corrido con K2.6: **~$8.50** (3x más caro).
 
 ---
 
+## Zen como válvula de escape
+
+### Filosofía
+
+> **Usa Go para el 95% del trabajo. Reserva Zen (frontier) para el 5% que realmente importa.**
+
+Zen proporciona acceso a modelos como Claude Opus 4.7 (64.3% SWE-Pro) y GPT-5.5, que superan a los modelos Go en tareas críticas. Sin embargo, cuestan 10-20x más.
+
+### ¿Cuándo conectar Zen manualmente?
+
+| Escenario | ¿Por qué Zen? | Frecuencia estimada |
+|---|---|---|
+| **Incidentes de producción** | Claude Opus razona mejor bajo presión y tiempo limitado | 1-2 veces/mes |
+| **Arquitectura desde cero** | GPT-5.5/Claude diseñan mejor sistemas nuevos con requisitos ambiguos | 1-2 veces/mes |
+| **Code review de seguridad** | Opus detecta vulnerabilidades sutiles que K2.6 puede pasar por alto | Cuando toca código crítico |
+| **Cuando un modelo Go "se atasca"** | Si después de 3 iteraciones no resuelve, escalas a frontier | Ocasional |
+| **Tecnologías muy nuevas** | Frontier tiene más contexto sobre frameworks/tech recientes | Poco frecuente |
+
+### Procedimiento para usar Zen
+
+```bash
+# 1. Conectar Zen (temporal)
+opencode auth login
+# Seleccionar Zen
+
+# 2. Usar modelo frontier explícitamente
+# Ejemplo: opencode-zen/claude-opus-4-7
+
+# 3. Desconectar Zen al terminar
+# Editar ~/.local/share/opencode/auth.json
+# Quitar la entrada "opencode"
+```
+
+### Coste estimado de uso de Zen
+
+| Modelo | Coste aprox./request | ¿Cuándo usar? |
+|---|---|---|
+| Claude Opus 4.7 | ~$0.015-0.020 | Decisiones críticas, arquitectura |
+| GPT-5.5 | ~$0.008-0.012 | Implementación compleja, reasoning |
+| GPT-5.4 | ~$0.003-0.005 | Tareas estándar con calidad superior |
+
+**Presupuesto sugerido:** $5-10/mes en Zen como "fondo de emergencia" para las pocas veces que realmente lo necesites.
+
+### Anti-patrones (qué NO hacer)
+
+- ❌ Conectar Zen por defecto "por si acaso"
+- ❌ Usar Claude Opus para búsquedas o tareas simples
+- ❌ Dejar Zen conectado después de terminar la tarea
+- ❌ Usar frontier para todo "porque es mejor" (coste 10-20x)
+
+---
+
 ## Terminal vs. OpenChamber
 
 ### ¿Cuándo se usa la terminal?
