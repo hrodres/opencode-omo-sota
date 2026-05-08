@@ -68,6 +68,15 @@ No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe 
 
 **Regla de oro:** Si una tarea requiere más de 100 requests, empieza por Tier 1 y escala solo si se atasca.
 
+## ¿Qué puedes construir?
+
+Consulta [`docs/capabilities.md`](docs/capabilities.md) para una evaluación honesta de qué proyectos son ideales, cuáles son posibles con limitaciones, y cuáles están fuera de alcance.
+
+**Resumen rápido:**
+- ✅ **Ideal:** APIs, backends, SaaS, automatizaciones, dashboards
+- ⚠️ **Posible:** Frontend funcional, apps móviles básicas, análisis de imágenes
+- ❌ **No puede:** Diseño gráfico, generación de imágenes/video/audio, branding
+
 ## Planes disponibles
 
 ### [opencode-go/](opencode-go/)
