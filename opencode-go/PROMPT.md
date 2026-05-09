@@ -20,10 +20,12 @@ Configurar (o actualizar) oh-my-openagent.json para usar EXCLUSIVAMENTE modelos 
 1. SOLO usar modelos con prefijo `opencode-go/`
 2. NUNCA usar `opencode-zen` ni `opencode/` (modelos de pago) como fallback automático
 3. Los modelos de pago solo se usan si el usuario los selecciona EXPLÍCITAMENTE
-4. Mantener arquitectura por tiers (según modelo actual JSON):
+4. Mantener arquitectura por tiers (ejemplos según configuración actual — verificar con `opencode models opencode-go`):
    - Tier 1 (Volumen): deepseek-v4-flash, qwen3.5-plus
    - Tier 2 (Estándar): deepseek-v4-pro, qwen3.6-plus
    - Tier 3 (Élite): kimi-k2.6, glm-5.1, mimo-v2.5
+   
+   > ⚠️ **Estos son ejemplos ilustrativos.** Ejecuta `opencode models opencode-go` para ver disponibilidad real hoy. Si alguno fue retirado, reemplázalo por un equivalente del mismo tier.
    
    Nota: minimax-m2.5 y minimax-m2.7 están disponibles en Go pero no se usan en esta configuración por preferencia de calidad.
 
@@ -69,7 +71,7 @@ La asignación exacta de modelos por agente y categoría está en [`oh-my-openag
 - Tier 2: Hephaestus, Atlas, Metis, Momus, Writing
 - Tier 1: Librarian, Explore, Sisyphus-junior, Quick, Unspecified-low
 
-### Rate Limit & Concurrency (verificar límites actuales)
+### Rate Limit & Concurrency (ejemplo — verificar límites actuales y adaptar)
 ```json
 {
   "model_fallback": true,

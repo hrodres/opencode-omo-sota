@@ -61,7 +61,7 @@ Si tienes el CLI de OMO disponible:
 **Esperado:**
 - ✅ Oh My OpenAgent instalado
 - ✅ OpenCode versión compatible
-- ⚠️ Posible warning sobre `mimo-v2.5` (modelo disponible pero no catalogado aún en models.dev)
+- ⚠️ Posible warning sobre algún modelo del Tier 3 (modelo disponible en Go pero no catalogado aún en models.dev)
 - ⚠️ Posible warning sobre LSP/GitHub CLI (no crítico para Go-Only)
 
 Si hay warnings sobre modelos desconocidos, actualiza el cache:
