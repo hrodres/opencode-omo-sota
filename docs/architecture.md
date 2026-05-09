@@ -29,10 +29,10 @@
 │  │  ├─ oh-my-openagent.json (configuración)                │   │
 │  │  └─ LSP servers (typescript, python, etc.)              │   │
 │  │                                                         │   │
-│  │  Modelos disponibles:                                   │   │
-│  │  ├─ Tier 1: deepseek-v4-flash (31K req/5h)              │   │
-│  │  ├─ Tier 2: deepseek-v4-pro, qwen3.6-plus (~3K req/5h)  │   │
-│  │  └─ Tier 3: kimi-k2.6, glm-5.1 (~1K req/5h)            │   │
+│  │  Modelos disponibles (ver oh-my-openagent.json):        │   │
+│  │  ├─ Tier 1: Volumen, ultra-rápidos (~30K req/5h)        │   │
+│  │  ├─ Tier 2: Estándar, balance calidad/coste (~3K req/5h)│   │
+│  │  └─ Tier 3: Élite, máxima calidad (~1K req/5h)          │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │  ┌─────────────────────────────────────────────────────────┐   │

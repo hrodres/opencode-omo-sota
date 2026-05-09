@@ -77,16 +77,13 @@ Si hay warnings sobre modelos desconocidos, actualiza el cache:
 opencode models opencode-go
 ```
 
-**Verificar que existen** los modelos configurados:
-- `kimi-k2.6`
-- `deepseek-v4-pro`
-- `deepseek-v4-flash`
-- `glm-5.1`
-- `qwen3.6-plus`
-- `qwen3.5-plus`
-- `mimo-v2.5`
+**Verificar que existen** los modelos configurados en `~/.config/opencode/oh-my-openagent.json`:
 
-Si alguno falta, buscar el equivalente del mismo tier y actualizar el JSON.
+```bash
+grep -oE 'opencode-go/[a-z0-9.-]+' ~/.config/opencode/oh-my-openagent.json | sort -u
+```
+
+Compara esta lista con la salida de `opencode models opencode-go`. Si alguno falta, busca el equivalente del mismo tier y actualiza el JSON (ver [`PROMPT.md`](../opencode-go/PROMPT.md) para el proceso).
 
 ---
 
@@ -98,7 +95,7 @@ Si alguno falta, buscar el equivalente del mismo tier y actualizar el JSON.
 ls -lt ~/.local/share/opencode/log/ | head -3
 ```
 
-### 4.2 Verificar que Sisyphus usa kimi-k2.6
+### 5.2 Verificar que Sisyphus usa su modelo asignado
 
 ```bash
 grep "agent=Sisyphus" ~/.local/share/opencode/log/TIMESTAMP.log | head -3
@@ -106,10 +103,12 @@ grep "agent=Sisyphus" ~/.local/share/opencode/log/TIMESTAMP.log | head -3
 
 **Esperado:**
 ```
-providerID=opencode-go modelID=kimi-k2.6 agent=Sisyphus
+providerID=opencode-go modelID=<tier-3-model> agent=Sisyphus
 ```
 
-### 4.3 Verificar que otros agentes usan sus modelos
+(El modelo exacto está en `oh-my-openagent.json`, típicamente Tier 3)
+
+### 5.3 Verificar que otros agentes usan sus modelos asignados
 
 Delegar una tarea de investigación y verificar:
 
@@ -117,10 +116,10 @@ Delegar una tarea de investigación y verificar:
 # Después de delegar a Librarian:
 grep "agent=librarian" ~/.local/share/opencode/log/TIMESTAMP.log | head -3
 
-# Esperado: providerID=opencode-go modelID=deepseek-v4-flash agent=librarian
+# Esperado: providerID=opencode-go modelID=<tier-1-model> agent=librarian
 ```
 
-**Si todos los agentes usan `kimi-k2.6`:** Revisar que el plugin OMO está cargado:
+**Si todos los agentes usan el mismo modelo (ej. Tier 3):** Revisar que el plugin OMO está cargado:
 ```bash
 cat ~/.config/opencode/opencode.json
 # Debe contener: { "plugin": ["oh-my-openagent@latest"] }
@@ -130,7 +129,7 @@ cat ~/.config/opencode/opencode.json
 
 ## 6. Rate limits y fallbacks
 
-### 5.1 Verificar cooldown activo
+### 6.1 Verificar cooldown activo
 
 Si un modelo da rate limit, buscar en logs:
 ```bash
@@ -139,21 +138,20 @@ grep -i "cooldown\|blacklist\|fallback" ~/.local/share/opencode/log/TIMESTAMP.lo
 
 **Esperado:**
 ```
-provider opencode-go/kimi-k2.6 blacklisted for 60s
-fallback to opencode-go/deepseek-v4-pro
+provider opencode-go/<model> blacklisted for 60s
+fallback to opencode-go/<fallback-model>
 ```
 
-### 5.2 Verificar concurrencia
+### 6.2 Verificar concurrencia
 
 ```bash
 grep "defaultConcurrency\|modelConcurrency" ~/.config/opencode/oh-my-openagent.json
 ```
 
-**Valores recomendados:**
-- `kimi-k2.6`: 2
-- `deepseek-v4-pro`: 3
-- `deepseek-v4-flash`: 20
-- `glm-5.1`: 1
+**Valores recomendados:** Ver `oh-my-openagent.json`. En general:
+- Tier 3 (élite): 1-2
+- Tier 2 (estándar): 3-5
+- Tier 1 (volumen): 10-20
 
 ---
 
@@ -177,8 +175,8 @@ Si aparece `"oh-my-opencode"` (nombre antiguo), también funciona pero genera un
 - [ ] `opencode auth list` → Solo Go conectado
 - [ ] JSON válido (`python3 -m json.tool`)
 - [ ] Todos los modelos configurados existen en `opencode models opencode-go`
-- [ ] Logs muestran `kimi-k2.6` para Sisyphus
-- [ ] Logs muestran `deepseek-v4-flash` para Librarian (al delegar)
+- [ ] Logs muestran Tier 3 para Sisyphus
+- [ ] Logs muestran Tier 1 para Librarian (al delegar)
 - [ ] Plugin cargado en `opencode.json`
 - [ ] Sin errores de `opencode-zen` en fallbacks
 

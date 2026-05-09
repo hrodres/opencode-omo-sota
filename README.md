@@ -96,31 +96,32 @@ Para más detalles, ver [`opencode-go/README.md`](opencode-go/README.md).
 
 ## Filosofía: Tiered Model Routing
 
-No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe usar el modelo adecuado según complejidad y coste:
+No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe usar el modelo adecuado según complejidad y coste.
 
-| Tier | Modelos | Uso | Requests/5h |
-|---|---|---|---|
-| **Tier 1** | DeepSeek V4 Flash, Qwen3.5 Plus | Volumen, búsquedas, tareas rápidas | ~31,000 |
-| **Tier 2** | DeepSeek V4 Pro, Qwen3.6 Plus | Ingeniería estándar, implementación | ~3,300 |
-| **Tier 3** | Kimi K2.6, GLM-5.1, MiMo V2.5 | Agentic complejo, arquitectura, reasoning | ~1,000-1,500 |
+Los modelos se organizan en 3 tiers dentro del plan Go. La asignación exacta (qué modelo usa cada agente) está en [`opencode-go/oh-my-openagent.json`](opencode-go/oh-my-openagent.json). Este JSON es la única fuente de verdad para modelos y fallbacks.
 
-**Regla de oro:** Si una tarea requiere más de 100 requests, empieza por Tier 1 y escala solo si se atasca.
+| Tier | Característica | Uso típico |
+|---|---|---|
+| **Tier 1** | Volumen, ultra-rápidos, nunca rate-limited | Búsquedas, tareas rápidas, exploración de código |
+| **Tier 2** | Balance calidad/coste | Implementación de features, debugging, review |
+| **Tier 3** | Máxima calidad, límites ajustados | Orchestración, arquitectura, reasoning complejo |
+
+**Regla de oro:** Si una tarea requiere muchos requests, empieza por Tier 1 y escala solo si se atasca.
 
 ## Capacidades de los modelos
 
 Consulta [`docs/capabilities.md`](docs/capabilities.md) para benchmarks y evaluación de los modelos configurados.
 
-**Resumen:**
-- **V4 Pro:** Excelente para backend y APIs (LiveCodeBench 93.5%)
-- **K2.6:** Óptimo para orquestación y agentic
-- **GLM-5.1:** Mejor reasoning para planning y arquitectura
-- **MiMo V2.5:** Multimodal (lectura de imágenes, no generación)
+Los modelos exactos y sus fortalezas están definidos en [`opencode-go/oh-my-openagent.json`](opencode-go/oh-my-openagent.json). En general, el ecosistema Go ofrece:
+- **Tier 1:** Indistinguibles de frontier para tareas simples, velocidad extrema
+- **Tier 2:** Excelentes para implementación y debugging, competitivos con frontier
+- **Tier 3:** Óptimos para orquestación y reasoning complejo, a 5-10 puntos de frontier en benchmarks más exigentes
 
 ## Planes disponibles
 
 ### [opencode-go/](opencode-go/)
 
-Plan de suscripción de $10/mes con acceso a modelos open-source de última generación (Kimi K2.6, DeepSeek V4 Pro, GLM-5.1, etc.).
+Plan de suscripción de $10/mes con acceso a modelos open-source de última generación. Ver [`opencode-go/oh-my-openagent.json`](opencode-go/oh-my-openagent.json) para los modelos configurados actualmente.
 
 - **Ventaja:** Coste fijo, límites generosos, 80-90% de calidad frontier
 - **Compromiso:** Necesita 1-2 iteraciones extra en arquitectura compleja

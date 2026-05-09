@@ -2,6 +2,8 @@
 
 > Caso de uso real donde el tiered routing funcionó correctamente.
 > Fecha: 2026-05-08
+>
+> **Nota:** Los modelos mencionados (`kimi-k2.6`, `deepseek-v4-flash`, etc.) corresponden a esta sesión histórica. La configuración actual puede usar modelos diferentes del mismo tier. Consulta [`oh-my-openagent.json`](../opencode-go/oh-my-openagent.json) para los modelos activos.
 
 ## Contexto
 

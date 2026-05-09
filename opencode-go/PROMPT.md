@@ -58,31 +58,16 @@ Configurar (o actualizar) oh-my-openagent.json para usar EXCLUSIVAMENTE modelos 
 5. Validar JSON
 6. Reiniciar opencode serve si es necesario
 
-## Configuración de referencia (verificar contra modelos reales actuales)
+## Configuración de referencia
 
-### Agents (según artículo - adaptar modelos si cambiaron)
-- sisyphus: Tier 3 (kimi-k2.6) → Tier 2 (deepseek-v4-pro) → Tier 2 (qwen3.6-plus)
-- hephaestus: Tier 2 (deepseek-v4-pro) → Tier 1 (deepseek-v4-flash) → Tier 3 (kimi-k2.6)
-- oracle: Tier 3 (glm-5.1) → Tier 3 (kimi-k2.6) → Tier 2 (deepseek-v4-pro)
-- librarian: Tier 1 (deepseek-v4-flash) → Tier 1 (qwen3.5-plus)
-- explore: Tier 1 (deepseek-v4-flash)
-- multimodal-looker: Tier 3 (mimo-v2.5) → Tier 2 (qwen3.6-plus)
-- prometheus: Tier 3 (glm-5.1) → Tier 2 (qwen3.6-plus) → Tier 2 (deepseek-v4-pro)
-- metis: Tier 2 (qwen3.6-plus) → Tier 2 (deepseek-v4-pro)
-- momus: Tier 2 (qwen3.6-plus) → Tier 3 (kimi-k2.6)
-- atlas: Tier 2 (deepseek-v4-pro) → Tier 1 (deepseek-v4-flash)
-- code-reviewer: Tier 3 (kimi-k2.6) → Tier 2 (deepseek-v4-pro)
-- sisyphus-junior: Tier 1 (deepseek-v4-flash)
+### Agents y Categories
 
-### Categories
-- visual-engineering: Tier 3 (mimo-v2.5) → Tier 2 (qwen3.6-plus)
-- ultrabrain: Tier 3 (glm-5.1) → Tier 3 (kimi-k2.6)
-- deep: Tier 3 (kimi-k2.6) → Tier 2 (deepseek-v4-pro)
-- artistry: Tier 3 (glm-5.1) → Tier 2 (qwen3.6-plus)
-- quick: Tier 1 (deepseek-v4-flash)
-- unspecified-low: Tier 1 (deepseek-v4-flash)
-- unspecified-high: Tier 2 (deepseek-v4-pro) → Tier 3 (kimi-k2.6)
-- writing: Tier 2 (qwen3.6-plus)
+La asignación exacta de modelos por agente y categoría está en [`oh-my-openagent.json`](oh-my-openagent.json). **No se duplica aquí** para evitar desincronización.
+
+**Filosofía general:**
+- Tier 3: Sisyphus, Oracle, Prometheus, Code-reviewer, Multimodal-looker
+- Tier 2: Hephaestus, Atlas, Metis, Momus, Writing
+- Tier 1: Librarian, Explore, Sisyphus-junior, Quick, Unspecified-low
 
 ### Rate Limit & Concurrency (verificar límites actuales)
 ```json
@@ -125,6 +110,20 @@ cp ~/.config/opencode/oh-my-openagent.json ~/git/opencode-omo-sota/opencode-go/
 ```
 
 **Regla:** El repo lidera. La activa sigue. Nunca al revés.
+
+---
+
+## Checklist al cambiar modelos
+
+Si actualizas un modelo en `oh-my-openagent.json`, revisa estos archivos para evitar desincronización:
+
+- [ ] `opencode-go/oh-my-openagent.json` (fuente de verdad)
+- [ ] `opencode-go/README.md` (si mencionaba el modelo viejo en filosofía o troubleshooting)
+- [ ] `README.md` (si el modelo aparecía en descripción general)
+- [ ] `docs/verification.md` (ejemplos de logs)
+- [ ] `CHANGELOG.md` (documentar el cambio)
+
+**No revisar periódicamente.** Solo cuando cambies un modelo.
 
 ---
 

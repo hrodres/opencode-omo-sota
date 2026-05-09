@@ -74,47 +74,37 @@ opencode serve --hostname 127.0.0.1 --port 37915 &
 
 ## Arquitectura de esta configuración
 
-### Tier 1 - Volumen (nunca rate-limited)
+La configuración organiza los modelos en 3 tiers. Los modelos exactos, sus límites de requests y asignación por agente están definidos en [`oh-my-openagent.json`](oh-my-openagent.json).
 
-| Modelo | Requests/5h | Uso |
+### Principios de asignación
+
+| Tier | Característica | Uso típico |
 |---|---|---|
-| `deepseek-v4-flash` | 31,650 | Búsquedas, tareas rápidas, review |
-| `qwen3.5-plus` | ~5,000 | Librarian, exploración código |
+| **Tier 1 - Volumen** | Ultra-rápidos, nunca rate-limited | Búsquedas, exploración de código, tareas rápidas |
+| **Tier 2 - Estándar** | Balance calidad/coste | Implementación, debugging, review |
+| **Tier 3 - Élite** | Máxima calidad, límites ajustados | Orchestración, arquitectura, reasoning |
 
-### Tier 2 - Estándar (balance calidad/coste)
-
-| Modelo | Requests/5h | Uso |
-|---|---|---|
-| `deepseek-v4-pro` | 3,300 | Implementación features, debugging |
-| `qwen3.6-plus` | 3,300 | Review, análisis, writing |
-
-### Tier 3 - Élite (máxima calidad, límites ajustados)
-
-| Modelo | Requests/5h | Uso |
-|---|---|---|
-| `kimi-k2.6` | 1,150 | Orchestración, Sisyphus, code-review |
-| `glm-5.1` | 880 | Arquitectura, planning, Oracle/Prometheus |
-| `mimo-v2.5` | 1,290 | Tareas multimodales, visual-engineering |
+**Regla de oro:** Librarian y Explore usan Tier 1. Hephaestus y Atlas usan Tier 2. Sisyphus, Oracle y Prometheus usan Tier 3. Ver JSON para modelos exactos.
 
 ## Calidad de los modelos: análisis honesto
 
 ### Fortalezas reales (benchmarks)
 
-| Modelo | Fortaleza | Benchmark | Contexto |
-|---|---|---|---|
-| `deepseek-v4-pro` | Programación competitiva | **LiveCodeBench 93.5%** | Supera a Claude Opus en código competitivo |
-| `qwen3.6-plus` | Trabajo terminal/agentic | **Terminal-Bench 61.6%** | Supera a Claude 4.5 (59.3%) |
-| `kimi-k2.6` | SWE-Pro (bugs reales) | **58.6%** | A 6 puntos de Claude Opus 4.7 (64.3%) |
-| `glm-5.1` | Reasoning y spec-writing | **58.4% SWE-Pro** | Mejor planning del ecosistema Go |
-| `deepseek-v4-flash` | Velocidad y coste | **31,650 req/5h** | Indistinguible de frontier para tareas simples |
+Los modelos exactos y sus benchmarks están en [`oh-my-openagent.json`](oh-my-openagent.json). En general, el ecosistema Go muestra:
 
-### Compromisos reales (dónde pierden vs. frontier)
+| Tier | Fortaleza típica | Benchmark aproximado |
+|---|---|---|
+| **Tier 1** | Velocidad y coste | ~30,000 req/5h. Indistinguible de frontier para tareas simples |
+| **Tier 2** | Programación competitiva, agentic | ~60-93% en benchmarks especializados. Competitivo con frontier |
+| **Tier 3** | SWE-Pro, reasoning | ~58-65%. A 5-10 puntos de Claude Opus/GPT-5.5 en los benchmarks más exigentes |
+
+### Compromisos reales (dónde pierde el ecosistema Go vs. frontier)
 
 | Escenario | Go vs. Frontier | ¿Se nota? |
 |---|---|---|
-| **Bugs de producción sutiles** | 58% vs 64% SWE-Pro | ⚠️ Opus necesita 1 iteración menos |
-| **Arquitectura desde cero** | GLM-5.1 vs Claude Opus | ⚠️ En sistemas desconocidos, Opus razona mejor |
-| **Code review de seguridad** | K2.6 vs GPT-5.5 | ⚠️ Frontier detecta vulnerabilidades sutiles |
+| **Bugs de producción sutiles** | ~58% vs ~64% SWE-Pro | ⚠️ Frontier necesita 1 iteración menos |
+| **Arquitectura desde cero** | Tier 3 vs Claude Opus | ⚠️ En sistemas desconocidos, frontier razona mejor |
+| **Code review de seguridad** | Tier 3 vs GPT-5.5 | ⚠️ Frontier detecta vulnerabilidades sutiles |
 | **Tecnologías muy nuevas** | Go models vs Claude | ⚠️ Menos contexto que modelos premium |
 
 ### Veredicto práctico
@@ -122,8 +112,8 @@ opencode serve --hostname 127.0.0.1 --port 37915 &
 > **Para el 80% del trabajo diario (features, debug, review, refactor), los modelos Go son indistinguibles de Claude/GPT.** La diferencia solo se nota en el 20% más difícil.
 
 **Tus datos de uso confirman esto:**
-- V4 Flash procesa el 90%+ del volumen sin problemas
-- K2.6 solo se usa para orquestación (decisiones estratégicas)
+- Tier 1 procesa el 90%+ del volumen sin problemas
+- Tier 3 solo se usa para orquestación (decisiones estratégicas)
 - Coste real: ~$0.20-0.40/hora de trabajo productivo
 
 ### Cuándo considerar frontier (Zen on-demand)
@@ -136,37 +126,28 @@ Conectar Zen manualmente solo para:
 
 ### Asignación por agente
 
-| Agente | Modelo | Fallbacks |
-|---|---|---|
-| **Sisyphus** (orchestrador) | `kimi-k2.6` | `deepseek-v4-pro` → `qwen3.6-plus` |
-| **Hephaestus** (deep worker) | `deepseek-v4-pro` | `deepseek-v4-flash` → `kimi-k2.6` |
-| **Oracle** (arquitectura) | `glm-5.1` | `kimi-k2.6` → `deepseek-v4-pro` |
-| **Prometheus** (planner) | `glm-5.1` | `qwen3.6-plus` → `deepseek-v4-pro` |
-| **Librarian** (búsqueda) | `deepseek-v4-flash` | `qwen3.5-plus` |
-| **Explore** (grep) | `deepseek-v4-flash` | - |
-| **Code-reviewer** | `kimi-k2.6` | `deepseek-v4-pro` |
-| **Metis/Momus** (review) | `qwen3.6-plus` | `deepseek-v4-pro` / `kimi-k2.6` |
-| **Atlas** (ejecutor) | `deepseek-v4-pro` | `deepseek-v4-flash` |
+La asignación exacta de modelos y fallbacks por agente está en [`oh-my-openagent.json`](oh-my-openagent.json). No se duplica aquí para evitar desincronización.
+
+**Filosofía general:**
+- **Sisyphus** (orchestrador): Tier 3. Necesita máxima calidad para decisiones estratégicas
+- **Oracle/Prometheus** (planning): Tier 3. Reasoning complejo y spec-writing
+- **Hephaestus/Atlas** (ejecución): Tier 2. Balance de calidad y coste
+- **Librarian/Explore** (búsqueda): Tier 1. Velocidad y volumen
+- **Code-reviewer**: Tier 3. Review crítico requiere máxima calidad
+- **Metis/Momus** (análisis): Tier 2. Análisis balanceado
 
 ## Cómo se derivó esta configuración
 
 Oh My OpenAgent está diseñado para **multi-proveedor** (Anthropic, OpenAI, Google, OpenCode Go, etc.). Sus cadenas internas (`fallbackChain`) recomiendan modelos de diferentes proveedores según el rol de cada agente.
 
-Esta configuración **traduce** esas recomendaciones al ecosistema **OpenCode Go**, asignando el modelo equivalente del mismo tier:
-
-| Agente | Recomendación OMO | Modelo Go asignado | Tier | Razón |
-|---|---|---|---|---|
-| **Sisyphus** | Claude Opus 4.7 (Anthropic) | `kimi-k2.6` | 3 Élite | Mejor agentic/orchestration en Go |
-| **Oracle** | GPT-5.5 / Gemini-3.1-Pro | `glm-5.1` | 3 Élite | Mejor reasoning y planning en Go |
-| **Prometheus** | Claude Opus 4.7 / GPT-5.5 | `glm-5.1` | 3 Élite | Mejor spec-writing en Go |
-| **Hephaestus** | GPT-5.5 (OpenAI) | `deepseek-v4-pro` | 2 Estándar | Generalista principle-driven equivalente |
-| **Atlas** | Claude Sonnet 4.6 / Kimi K2.5 | `deepseek-v4-pro` | 2 Estándar | Ejecución balanceada |
-| **Librarian** | GPT-5.4-mini-fast | `deepseek-v4-flash` | 1 Volumen | Equivalente en velocidad/coste |
-| **Explore** | GPT-5.4-mini-fast | `deepseek-v4-flash` | 1 Volumen | Búsquedas masivas, nunca rate-limited |
-| **Code-reviewer** | (Sin chain propia) | `kimi-k2.6` | 3 Élite | Máxima calidad para review crítico |
-| **Metis/Momus** | Claude Opus / GPT-5.5 | `qwen3.6-plus` | 2 Estándar | Análisis y review balanceado |
+Esta configuración **traduce** esas recomendaciones al ecosistema **OpenCode Go**:
+- Por cada agente, identifica el **tier** que OMO recomienda (basado en complejidad de la tarea)
+- Busca en OpenCode Go el modelo del **mismo tier** que mejor encaje con la personalidad del agente
+- Asigna **fallbacks** exclusivamente dentro del ecosistema Go
 
 **Clave:** No es una copia literal de las `fallbackChain` del plugin (eso requeriría Anthropic, OpenAI, Google). Es una **traducción deliberada** de la filosofía de OMO al plan Go.
+
+Los modelos exactos resultantes de esta traducción están en [`oh-my-openagent.json`](oh-my-openagent.json).
 
 ## Actualizar modelos
 
