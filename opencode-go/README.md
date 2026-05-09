@@ -340,6 +340,23 @@ El installer oficial de OMO funciona y está documentado. Sin embargo, esta conf
 **Usa el installer oficial** si quieres configurar rápido sin pensar.
 **Usa este repo** si quieres entender, controlar, y versionar tu configuración.
 
+### ¿Con qué frecuencia debo revisar modelos?
+
+**Solo cuando sea necesario.** No hay valor en revisar periódicamente "por si acaso".
+
+Revisa cuando:
+- Un modelo deja de funcionar (error en logs)
+- OpenCode anuncia nuevos modelos
+- Ves rate limits inesperados
+- Un agente empieza a usar fallbacks con frecuencia anormal
+
+**No revises cuando:**
+- Todo funciona correctamente
+- Los logs muestran routing correcto
+- No has tocado la configuración en semanas
+
+> La filosofía es: **si funciona, no lo toques.** Los modelos no cambian de la noche a la mañana.
+
 ### ¿OMO + OpenCode sirven para preguntas generales y configuración?
 
 **No es su fortaleza.** OpenCode es una herramienta de **software development**. OMO es un equipo de **ingenieros especializados**. Ninguno está diseñado para charla general.

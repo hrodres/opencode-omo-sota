@@ -113,6 +113,21 @@ Configurar (o actualizar) oh-my-openagent.json para usar EXCLUSIVAMENTE modelos 
 }
 ```
 
+## ⚠️ Mantenimiento: evitar divergencia
+
+Este repo (`~/git/opencode-omo-sota/opencode-go/oh-my-openagent.json`) es la **fuente de verdad**. La configuración activa (`~/.config/opencode/oh-my-openagent.json`) debe ser idéntica.
+
+Si editas la activa manualmente (por ejemplo, durante una sesión de debugging), recuerda:
+
+```bash
+# Copiar cambios al repo antes de hacer commit
+cp ~/.config/opencode/oh-my-openagent.json ~/git/opencode-omo-sota/opencode-go/
+```
+
+**Regla:** El repo lidera. La activa sigue. Nunca al revés.
+
+---
+
 ## Validación final
 
 Después de cualquier cambio:
