@@ -233,16 +233,16 @@ La documentación oficial de OMO define tres niveles de interacción según la c
 
 ### Filosofía del Model Matching
 
-OMO no asigna modelos al azar. Cada agente tiene un modelo que encaja con su **personalidad de trabajo**:
+OMO no asigna modelos al azar. Cada agente tiene un modelo que encaja con su **personalidad de trabajo**. La asignación exacta está en [`oh-my-openagent.json`](oh-my-openagent.json).
 
-| Agente | Personalidad | Modelo Go asignado | Por qué encaja |
+| Agente | Personalidad | Tier típico | Por qué ese tier encaja |
 |---|---|---|---|
-| **Sisyphus** | Líder sociable. Coordina, delega, comunica. Nunca se rinde. | `kimi-k2.6` | Sigue instrucciones complejas de ~1,100 líneas, mantiene flujo de conversación entre múltiples tool calls |
-| **Hephaestus** | Especialista profundo. Trabaja solo, emerge con soluciones. | `deepseek-v4-pro` | Razonamiento profundo, explora autónomamente sin supervisión |
-| **Oracle** | Consultor arquitectónico. Lee, analiza, no toca código. | `glm-5.1` | Excelente reasoning lógico y análisis profundo |
-| **Librarian** | Buscador rápido. Encuentra documentación y ejemplos. | `deepseek-v4-flash` | Velocidad ultra-rápida, nunca rate-limited |
+| **Sisyphus** | Líder sociable. Coordina, delega, comunica. Nunca se rinde. | Tier 3 | Sigue instrucciones complejas de ~1,100 líneas, mantiene flujo de conversación entre múltiples tool calls |
+| **Hephaestus** | Especialista profundo. Trabaja solo, emerge con soluciones. | Tier 2 | Razonamiento profundo, explora autónomamente sin supervisión |
+| **Oracle** | Consultor arquitectónico. Lee, analiza, no toca código. | Tier 3 | Excelente reasoning lógico y análisis profundo |
+| **Librarian** | Buscador rápido. Encuentra documentación y ejemplos. | Tier 1 | Velocidad ultra-rápida, nunca rate-limited |
 
-> **Cambiar el modelo = cambiar el cerebro.** Las mismas instrucciones se entienden completamente diferente en Kimi vs. GLM vs. DeepSeek.
+> **Cambiar el modelo = cambiar el cerebro.** Las mismas instrucciones se entienden completamente diferente según el modelo asignado.
 
 ### Telemetría
 
@@ -364,10 +364,12 @@ grep "service=llm" ~/.local/share/opencode/log/TIMESTAMP.log | grep -E "agent=Si
 ```
 
 **Esperado:**
-- `agent=Sisyphus` → `modelID=kimi-k2.6`
-- `agent=librarian` → `modelID=deepseek-v4-flash`
+- `agent=Sisyphus` → `modelID=<tier-3-model>` (modelo de élite para orquestación)
+- `agent=librarian` → `modelID=<tier-1-model>` (modelo de volumen para búsqueda)
 
-Si ambos usan `kimi-k2.6`, revisa que el plugin OMO esté cargado en `opencode.json`.
+(El modelo exacto depende de tu configuración actual en `oh-my-openagent.json`)
+
+Si ambos usan el mismo modelo (ej. Tier 3), revisa que el plugin OMO esté cargado en `opencode.json`.
 
 ### ¿Qué hago si un modelo desaparece de `opencode models opencode-go`?
 

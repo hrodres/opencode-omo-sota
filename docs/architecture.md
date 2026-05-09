@@ -106,10 +106,13 @@
 
 **Qué es:** Plan de suscripción de $10/mes con acceso a modelos open-source SOTA.
 
-**Modelos disponibles:**
-- **Tier 1 (Volumen):** `deepseek-v4-flash`, `qwen3.5-plus`, `minimax-m2.5`
-- **Tier 2 (Estándar):** `deepseek-v4-pro`, `qwen3.6-plus`, `minimax-m2.7`
-- **Tier 3 (Élite):** `kimi-k2.6`, `glm-5.1`, `mimo-v2.5`
+**Modelos:** Organizados en 3 tiers según complejidad y coste. La asignación exacta está en [`oh-my-openagent.json`](../opencode-go/oh-my-openagent.json).
+
+| Tier | Característica | Uso |
+|---|---|---|
+| **Tier 1 (Volumen)** | Ultra-rápidos, nunca rate-limited | Búsquedas, tareas rápidas |
+| **Tier 2 (Estándar)** | Balance calidad/coste | Implementación, debugging |
+| **Tier 3 (Élite)** | Máxima calidad, límites ajustados | Orchestración, arquitectura |
 
 **Filosofía:** Usar el modelo adecuado para cada tarea, no el más caro para todo.
 
