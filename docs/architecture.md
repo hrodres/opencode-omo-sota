@@ -30,9 +30,9 @@
 │  │  └─ LSP servers (typescript, python, etc.)              │   │
 │  │                                                         │   │
 │  │  Modelos disponibles (ver oh-my-openagent.json):        │   │
-│  │  ├─ Tier 1: Volumen, ultra-rápidos (~30K req/5h)        │   │
-│  │  ├─ Tier 2: Estándar, balance calidad/coste (~3K req/5h)│   │
-│  │  └─ Tier 3: Élite, máxima calidad (~1K req/5h)          │   │
+│  │  ├─ Tier 1: Volumen, ultra-rápidos (miles de req/5h)    │   │
+│  │  ├─ Tier 2: Estándar, balance calidad/coste              │   │
+│  │  └─ Tier 3: Élite, máxima calidad (límites ajustados)   │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │  ┌─────────────────────────────────────────────────────────┐   │
