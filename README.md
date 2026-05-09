@@ -44,7 +44,16 @@ cd opencode-omo-sota
 # O instalar manualmente siguiendo la guía de opencode-go/README.md
 ```
 
-### ⚠️ Importante: `setup.sh` no instala software
+### ⚠️ OpenCode + OMO no es un chatbot general
+
+OpenCode es una herramienta de **software development**. OMO es un **equipo de ingenieros especializados**.
+
+- **Para coding:** Excelente
+- **Para charla/consultas generales:** Considera ChatGPT/Claude (gratis)
+
+Una sesión larga de consultas en OpenCode puede costar $1-2 USD. La misma conversación fuera de OpenCode es gratuita.
+
+## ⚠️ Importante: `setup.sh` no instala software
 
 **`setup.sh` solo copia y valida la configuración JSON.** No instala OpenCode, Oh My OpenAgent ni ninguna dependencia. Asume que ya tienes:
 

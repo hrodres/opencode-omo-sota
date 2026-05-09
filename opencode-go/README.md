@@ -243,6 +243,20 @@ Zen no aparece en los fallbacks para evitar consumo accidental de créditos de A
 
 Porque si todos los modelos Go fallan, preferimos un **error limpio** antes que degradar silenciosamente a un modelo de calidad mucho inferior. Puedes añadir `"opencode/big-pickle"` al final de `fallback_models` si prefieres que nunca falle.
 
+### ¿OMO + OpenCode sirven para preguntas generales y configuración?
+
+**No es su fortaleza.** OpenCode es una herramienta de **software development**. OMO es un equipo de **ingenieros especializados**. Ninguno está diseñado para charla general.
+
+| Tipo de sesión | ¿OpenCode + OMO? | Alternativa |
+|---|---|---|
+| **Coding, debug, refactor** | ✅ Excelente | — |
+| **Arquitectura de software** | ✅ Muy bueno | — |
+| **Charla técnica, consultas, "qué es X"** | ⚠️ Funciona pero es ineficiente | ChatGPT, Claude web, etc. |
+
+**Por qué:** Cada mensaje en OpenCode consume requests de modelo. Una charla de 200 mensajes con K2.6 cuesta ~$1 USD. La misma conversación en ChatGPT es gratis.
+
+**Recomendación:** Reserva OpenCode + OMO para trabajo real de código. Para charla y consultas, usa herramientas diseñadas para conversación.
+
 ### ¿Cómo sé si el tiered routing realmente funciona?
 
 Revisa los logs después de una sesión con delegación:
