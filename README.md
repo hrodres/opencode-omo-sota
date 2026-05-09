@@ -13,6 +13,16 @@ Este repositorio contiene configuraciones funcionales y documentadas para usar [
 
 Cada carpeta representa un **plan de suscripción** (`opencode-go/`, `zen/`, etc.) y es **self-contained**: contiene la configuración JSON operativa, el prompt para recrearla/actualizarla, y su propia documentación.
 
+> ### ✅ Caso de uso oficialmente documentado
+>
+> Esta configuración **no es un hack**. Los autores de Oh My OpenAgent documentan explícitamente el escenario *"User has OpenCode Go only"* en su [guía de instalación](https://ohmyopenagent.com/docs):
+>
+> ```bash
+> bunx oh-my-opencode install --no-tui --claude=no --openai=no --gemini=no --copilot=no --opencode-go=yes
+> ```
+>
+> Nosotros implementamos este mismo caso de uso manualmente (editando el JSON directamente) para máximo control y transparencia.
+
 ## Estructura
 
 ```
@@ -43,6 +53,25 @@ cd opencode-omo-sota
 
 # O instalar manualmente siguiendo la guía de opencode-go/README.md
 ```
+
+### Go-Only vs. Setup estándar de OMO
+
+OMO por defecto asume que tienes **múltiples suscripciones** (Anthropic, OpenAI, GitHub Copilot, OpenCode/Zen) y orquesta entre ellas para usar el mejor modelo para cada tarea.
+
+Esta configuración toma el enfoque **opuesto y conservador**:
+
+| | Setup estándar OMO | Configuración Go-Only (esta repo) |
+|---|---|---|
+| **Filosofía** | Usa todos los providers disponibles | Usa **exclusivamente** OpenCode Go |
+| **Modelos** | Mixtos según agente y disponibilidad | Todos forzados a `opencode-go/*` |
+| **Fallbacks** | Chains multi-provider con auto-fallback | Solo `opencode-go/...` → error limpio |
+| **Coste** | Variable, depende de qué modelo caiga | Predecible, dentro de límites de Go |
+| **Zen** | Disponible como provider más | Desconectado explícitamente |
+
+**¿Cuándo usar esta configuración?**
+- Quieres **costes predecibles** sin sorpresas de API
+- No tienes (o no quieres usar) suscripciones de Anthropic, OpenAI, etc.
+- Prefieres **transparencia total** sobre qué modelo se ejecuta en cada tarea
 
 ### ⚠️ OpenCode + OMO no es un chatbot general
 

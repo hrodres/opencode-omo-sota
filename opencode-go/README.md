@@ -220,6 +220,74 @@ opencode auth login
 - **Zen está desconectado por defecto:** Para evitar consumo accidental de créditos de API de pago.
 - **Configuración basada en:** Artículo de Jatin K Malik + adaptación a modelos reales disponibles en OpenCode Go.
 
+## Cómo trabajar con OMO
+
+### Los 3 modos de trabajo
+
+La documentación oficial de OMO define tres niveles de interacción según la complejidad de la tarea:
+
+| Complejidad | Qué hacer | Cuándo usar |
+|---|---|---|
+| **Simple** | Escribe el prompt directamente | Tareas rápidas, fixes de un archivo, cambios triviales |
+| **Compleja + Perezosa** | Escribe `ultrawork` o `ulw` | Tareas complejas donde explicar todo el contexto es tedioso. El agente lo descubre solo. |
+| **Compleja + Precisa** | `@plan` → `/start-work` | Trabajo multi-paso que requiere orquestación real. Prometheus planea, Atlas ejecuta con verificación. |
+
+**Ejemplos concretos:**
+- *Fix:* "Arregla el typo en `utils.py` línea 23" → **Modo Simple**
+- *Feature:* "Implementa autenticación JWT en la API" → **Modo `ultrawork`**
+- *Refactor:* "Migra todo el proyecto de REST a GraphQL con tests y documentación" → **`@plan` → `/start-work`**
+
+### Filosofía del Model Matching
+
+OMO no asigna modelos al azar. Cada agente tiene un modelo que encaja con su **personalidad de trabajo**:
+
+| Agente | Personalidad | Modelo Go asignado | Por qué encaja |
+|---|---|---|---|
+| **Sisyphus** | Líder sociable. Coordina, delega, comunica. Nunca se rinde. | `kimi-k2.6` | Sigue instrucciones complejas de ~1,100 líneas, mantiene flujo de conversación entre múltiples tool calls |
+| **Hephaestus** | Especialista profundo. Trabaja solo, emerge con soluciones. | `deepseek-v4-pro` | Razonamiento profundo, explora autónomamente sin supervisión |
+| **Oracle** | Consultor arquitectónico. Lee, analiza, no toca código. | `glm-5.1` | Excelente reasoning lógico y análisis profundo |
+| **Librarian** | Buscador rápido. Encuentra documentación y ejemplos. | `deepseek-v4-flash` | Velocidad ultra-rápida, nunca rate-limited |
+
+> **Cambiar el modelo = cambiar el cerebro.** Las mismas instrucciones se entienden completamente diferente en Kimi vs. GLM vs. DeepSeek.
+
+### Telemetría
+
+Oh My OpenAgent envía **telemetría anónima** por defecto para trackear instalaciones activas (DAU/WAU/MAU). Un único evento por día por máquina, usando un identificador hasheado. No se crean perfiles de usuario.
+
+**Para desactivarla:**
+```bash
+export OMO_SEND_ANONYMOUS_TELEMETRY=0
+# o
+export OMO_DISABLE_POSTHOG=1
+```
+
+Añade la variable a tu `~/.bashrc` o `~/.zshrc` para que persista.
+
+### Team Mode (avanzado)
+
+OMO incluye un modo experimental de **coordinación multi-agente en paralelo** (similar a Agent Teams de Claude Code).
+
+- **Estado:** OFF por defecto
+- **Para habilitar:** Añade al JSON:
+```json
+{
+  "team_mode": {
+    "enabled": true,
+    "max_parallel_members": 4,
+    "max_members": 8
+  }
+}
+```
+- Reinicia `opencode serve`
+- Disponibles 12 herramientas `team_*`
+
+**Usar cuando:**
+- Exploración paralela con coordinación acotada
+- Refactors largos divididos entre agentes especializados
+- Pipelines de investigación + implementación
+
+Más detalles en la [documentación oficial de OMO](https://ohmyopenagent.com/docs).
+
 ## FAQ
 
 ### ¿Este JSON instala OpenCode y Oh My OpenAgent automáticamente?

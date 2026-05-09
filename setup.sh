@@ -50,6 +50,32 @@ if ! python3 -m json.tool "${CONFIG_SRC}" > /dev/null 2>&1; then
 fi
 log_info "JSON validation passed"
 
+# Step 2b: Validate against OMO schema (best effort)
+SCHEMA_URL="https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json"
+if python3 -c "import jsonschema" > /dev/null 2>&1; then
+    SCHEMA_CHECK=$(python3 -c "
+import json, jsonschema, urllib.request
+try:
+    with urllib.request.urlopen('${SCHEMA_URL}') as resp:
+        schema = json.load(resp)
+    with open('${CONFIG_SRC}') as f:
+        config = json.load(f)
+    jsonschema.validate(config, schema)
+    print('OK')
+except Exception as e:
+    print(str(e))
+" 2>&1)
+    if [ "${SCHEMA_CHECK}" == "OK" ]; then
+        log_info "Schema validation passed (OMO official schema)"
+    else
+        log_warn "Schema validation warning: ${SCHEMA_CHECK}"
+        log_warn "Config may still work. Install jsonschema for full validation: pip install jsonschema"
+    fi
+else
+    log_warn "jsonschema not installed. Skipping schema validation."
+    log_warn "Install with: pip install jsonschema"
+fi
+
 # Step 3: Check for Zen if using opencode-go preset
 if [ "${PRESET}" == "opencode-go" ] && [ -f "${AUTH_FILE}" ]; then
     if grep -q '"opencode"' "${AUTH_FILE}" 2>/dev/null; then
@@ -118,7 +144,36 @@ else
     log_warn "opencode CLI not found. Skipping model verification."
 fi
 
-# Step 6: Summary
+# Step 6: Telemetry preference
+echo ""
+read -p "Disable OMO anonymous telemetry? [Y/n]: " telemetry_choice
+case "${telemetry_choice:-Y}" in
+    [Yy]*)
+        SHELL_RC=""
+        if [ -f "${HOME}/.bashrc" ]; then
+            SHELL_RC="${HOME}/.bashrc"
+        elif [ -f "${HOME}/.zshrc" ]; then
+            SHELL_RC="${HOME}/.zshrc"
+        fi
+
+        if [ -n "${SHELL_RC}" ]; then
+            if ! grep -q "OMO_SEND_ANONYMOUS_TELEMETRY" "${SHELL_RC}" 2>/dev/null; then
+                echo 'export OMO_SEND_ANONYMOUS_TELEMETRY=0' >> "${SHELL_RC}"
+                log_info "Telemetry disabled. Added to ${SHELL_RC}"
+            else
+                log_info "Telemetry already disabled in ${SHELL_RC}"
+            fi
+        else
+            log_warn "Could not find .bashrc or .zshrc. Add manually:"
+            log_warn "  export OMO_SEND_ANONYMOUS_TELEMETRY=0"
+        fi
+        ;;
+    *)
+        log_info "Telemetry left enabled (default OMO behavior)"
+        ;;
+esac
+
+# Step 7: Summary
 echo ""
 log_info "Setup complete!"
 echo ""
