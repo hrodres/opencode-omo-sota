@@ -48,7 +48,7 @@ opencode-omo-sota/
 git clone https://github.com/hrodres/opencode-omo-sota.git
 cd opencode-omo-sota
 
-# Instalar configuración (backup automático, validación JSON, verificación de auth)
+# Instalar configuración (backup automático, validación JSON, verificación de auth y modelos)
 ./setup.sh opencode-go
 
 # O instalar manualmente siguiendo la guía de opencode-go/README.md

@@ -1,23 +1,16 @@
-# Auth credentials
-auth.json
+# Backups generados por setup.sh
+*.backup-*
 
-# Backups of oh-my-openagent.json
-oh-my-openagent.json.backup*
+# Logs locales
+*.log
 
-# OS files
+# macOS
 .DS_Store
-Thumbs.db
 
 # IDEs
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
-# Node
-node_modules/
-
-# Temporary files
-*.tmp
-*.temp
+# Python
+__pycache__/
+*.pyc

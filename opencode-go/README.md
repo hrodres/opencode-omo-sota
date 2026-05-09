@@ -179,6 +179,19 @@ Cuando OpenCode añada nuevos modelos o retire otros:
 
 ## Troubleshooting
 
+### Verificar salud con `doctor`
+
+Si tienes el CLI de OMO instalado:
+
+```bash
+/root/.cache/opencode/packages/oh-my-openagent@latest/node_modules/.bin/oh-my-openagent doctor
+```
+
+Si muestra warnings sobre modelos desconocidos:
+```bash
+/root/.cache/opencode/packages/oh-my-openagent@latest/node_modules/.bin/oh-my-openagent refresh-model-capabilities
+```
+
 ### "Todos los agentes usan el mismo modelo"
 
 Verifica que el plugin OMO está cargado:
@@ -310,6 +323,22 @@ Zen no aparece en los fallbacks para evitar consumo accidental de créditos de A
 ### ¿Por qué no incluyes `big-pickle` como fallback?
 
 Porque si todos los modelos Go fallan, preferimos un **error limpio** antes que degradar silenciosamente a un modelo de calidad mucho inferior. Puedes añadir `"opencode/big-pickle"` al final de `fallback_models` si prefieres que nunca falle.
+
+### ¿Por qué JSON manual en lugar de `bunx oh-my-opencode install --opencode-go=yes`?
+
+El installer oficial de OMO funciona y está documentado. Sin embargo, esta configuración manual ofrece:
+
+| | Installer oficial (`bunx`) | Configuración manual (este repo) |
+|---|---|---|
+| **Control** | Automático, opina por ti | Total: eliges cada modelo y fallback |
+| **Exclusividad Go** | Depende de tus respuestas | Garantizada: solo `opencode-go/*` en el JSON |
+| **Versionado** | No está en tu repo | Git history de cambios, rollback fácil |
+| **Fallbacks** | Chains predefinidas OMO | Customizados para Go-Only, sin Zen |
+| **Transparencia** | Black box | Cada modelo documentado con su porqué |
+| **Aprendizaje** | Ninguno | Entiendes qué hace cada agente |
+
+**Usa el installer oficial** si quieres configurar rápido sin pensar.
+**Usa este repo** si quieres entender, controlar, y versionar tu configuración.
 
 ### ¿OMO + OpenCode sirven para preguntas generales y configuración?
 

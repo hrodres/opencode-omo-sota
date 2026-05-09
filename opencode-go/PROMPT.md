@@ -20,10 +20,12 @@ Configurar (o actualizar) oh-my-openagent.json para usar EXCLUSIVAMENTE modelos 
 1. SOLO usar modelos con prefijo `opencode-go/`
 2. NUNCA usar `opencode-zen` ni `opencode/` (modelos de pago) como fallback automático
 3. Los modelos de pago solo se usan si el usuario los selecciona EXPLÍCITAMENTE
-4. Mantener arquitectura por tiers:
-   - Tier 1 (Volumen): deepseek-v4-flash, qwen3.5-plus, minimax-m2.5
-   - Tier 2 (Estándar): deepseek-v4-pro, qwen3.6-plus, minimax-m2.7
+4. Mantener arquitectura por tiers (según modelo actual JSON):
+   - Tier 1 (Volumen): deepseek-v4-flash, qwen3.5-plus
+   - Tier 2 (Estándar): deepseek-v4-pro, qwen3.6-plus
    - Tier 3 (Élite): kimi-k2.6, glm-5.1, mimo-v2.5
+   
+   Nota: minimax-m2.5 y minimax-m2.7 están disponibles en Go pero no se usan en esta configuración por preferencia de calidad.
 
 ## Pasos a seguir
 

@@ -49,7 +49,29 @@ grep -c "opencode-zen\|opencode/claude\|opencode/gpt-5\.5" ~/.config/opencode/oh
 
 ---
 
-## 3. Modelos disponibles
+## 3. Verificar salud de OMO (opcional pero recomendado)
+
+Si tienes el CLI de OMO disponible:
+
+```bash
+# Ruta típica en instalaciones por plugin
+/root/.cache/opencode/packages/oh-my-openagent@latest/node_modules/.bin/oh-my-openagent doctor
+```
+
+**Esperado:**
+- ✅ Oh My OpenAgent instalado
+- ✅ OpenCode versión compatible
+- ⚠️ Posible warning sobre `mimo-v2.5` (modelo disponible pero no catalogado aún en models.dev)
+- ⚠️ Posible warning sobre LSP/GitHub CLI (no crítico para Go-Only)
+
+Si hay warnings sobre modelos desconocidos, actualiza el cache:
+```bash
+/root/.cache/opencode/packages/oh-my-openagent@latest/node_modules/.bin/oh-my-openagent refresh-model-capabilities
+```
+
+---
+
+## 4. Modelos disponibles
 
 ```bash
 opencode models opencode-go
@@ -68,7 +90,7 @@ Si alguno falta, buscar el equivalente del mismo tier y actualizar el JSON.
 
 ---
 
-## 4. Tiered Routing funciona (logs)
+## 5. Tiered Routing funciona (logs)
 
 ### 4.1 Encontrar el log de tu sesión actual
 
@@ -106,7 +128,7 @@ cat ~/.config/opencode/opencode.json
 
 ---
 
-## 5. Rate limits y fallbacks
+## 6. Rate limits y fallbacks
 
 ### 5.1 Verificar cooldown activo
 

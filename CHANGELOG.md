@@ -2,6 +2,33 @@
 
 > Registro de cambios en la configuración y documentación.
 
+## [2026-05-09] - Validación oficial, workflow modes, telemetría, schema
+
+### Añadido
+- Validación de caso de uso oficial: OMO documenta explícitamente "User has OpenCode Go only"
+- Sección "Go-Only vs. Setup estándar de OMO" en README principal
+- Documentación de los 3 modos de trabajo de OMO (Simple, Ultrawork, Preciso)
+- Guía de Model Matching: por qué cada agente tiene su modelo
+- Documentación de telemetría (qué recopila OMO, cómo desactivarla)
+- Soporte para Team Mode (avanzado, OFF por defecto)
+- Schema oficial OMO (`$schema`) en el JSON para validación automática
+- `setup.sh`: validación opcional contra schema oficial, prompt para desactivar telemetría
+- FAQ: "¿Por qué JSON manual en lugar de bunx installer?"
+- `docs/workflow-modes.md`: Guía completa de modos de trabajo
+- `docs/telemetry.md`: Transparencia sobre telemetría anónima
+- `.gitignore`: Evita subir backups y logs accidentalmente
+
+### Cambiado
+- `PROMPT.md`: Corregida inconsistencia con tiers (eliminados minimax no usados)
+- `docs/verification.md`: Añadido `oh-my-openagent doctor` como paso de verificación
+- `opencode-go/README.md`: Añadido `doctor` en troubleshooting
+
+### Verificado
+- ✅ `oh-my-openagent doctor` ejecutable en el servidor
+- ✅ `refresh-model-capabilities` actualiza 2318 modelos
+- ✅ Cache refleja disponibilidad real de `mimo-v2.5`
+- ✅ Telemetría desactivada en entorno: `OMO_SEND_ANONYMOUS_TELEMETRY=0`
+
 ## [2026-05-08] - Configuración inicial OpenCode Go
 
 ### Añadido
