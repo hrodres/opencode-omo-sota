@@ -3,6 +3,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hrodres/opencode-omo-sota)](https://github.com/hrodres/opencode-omo-sota/commits/main)
 
+<p align="center">
+  <img src="images/panteon-agentes.png" alt="Panteón de Agentes OpenCode" width="100%">
+</p>
+
 > **Routing SOTA para OpenCode + OMO**
 >
 > Fuente de verdad operativa para configuraciones de [Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) con planes de modelo específicos.
@@ -29,6 +33,9 @@ Cada carpeta representa un **plan de suscripción** (`opencode-go/`, `zen/`, etc
 opencode-omo-sota/
 ├── README.md              # Este archivo
 ├── setup.sh               # Script de instalación automatizada
+├── images/                # Infografías e ilustraciones
+│   ├── panteon-agentes.png   # Ilustración épica de los agentes
+│   └── mapa-agentes.png      # Infografía técnica de agentes y categorías
 ├── opencode-go/           # Plan OpenCode Go ($10/mes)
 │   ├── oh-my-openagent.json  # Configuración operativa
 │   ├── PROMPT.md             # Prompt para recrear/actualizar
