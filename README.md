@@ -29,21 +29,28 @@ Cada carpeta representa un **plan de suscripción** (`opencode-go/`, `zen/`, etc
 
 ```
 opencode-omo-sota/
-├── README.md              # Este archivo
-├── setup.sh               # Script de instalación automatizada
-├── images/                # Infografías e ilustraciones
-│   ├── panteon-agentes.png   # Ilustración épica de los agentes
-│   └── mapa-agentes.png      # Infografía técnica de agentes y categorías
-├── opencode-go/           # Plan OpenCode Go ($10/mes)
-│   ├── oh-my-openagent.json  # Configuración operativa
-│   ├── PROMPT.md             # Prompt para recrear/actualizar
-│   └── README.md             # Guía específica del plan
-├── docs/
-│   ├── verification.md     # Checklist post-configuración
-│   ├── session-example.md  # Caso de uso real
-│   ├── architecture.md     # Stack completo
-│   └── reference/          # Materiales de referencia
-└── CHANGELOG.md
+├── CHANGELOG.md               # Registro de cambios del proyecto
+├── LICENSE                    # Licencia MIT
+├── README.md                  # Este archivo
+├── SESSION-CONTEXT.md         # Contexto para continuidad entre sesiones
+├── setup.sh                   # Script de instalación automatizada
+├── images/                    # Infografías e ilustraciones
+│   ├── panteon-agentes.png    # Ilustración épica de los agentes
+│   └── mapa-agentes.png       # Infografía técnica de agentes y categorías
+├── opencode-go/               # Plan OpenCode Go ($10/mes)
+│   ├── oh-my-openagent.json   # Configuración operativa (fuente de verdad)
+│   ├── PROMPT.md              # Prompt para recrear/actualizar la config
+│   ├── README.md              # Guía específica del plan Go
+│   └── docs/
+│       ├── changelog-config.md   # Historial de cambios del JSON
+│       └── prompt-auditoria.md   # Prompt para revisar modelos vs benchmarks
+└── docs/                      # Documentación general del proyecto
+    ├── architecture.md        # Stack completo
+    ├── reference/             # Materiales de referencia (artículo original)
+    ├── session-example.md     # Caso de uso real con logs
+    ├── telemetry.md           # Transparencia sobre telemetría
+    ├── verification.md        # Checklist post-configuración
+    └── workflow-modes.md      # Modos de trabajo (Simple, Ultrawork, Preciso)
 ```
 
 ## Instalación rápida

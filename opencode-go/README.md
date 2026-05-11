@@ -13,7 +13,9 @@
 | Archivo | Propósito |
 |---|---|
 | `oh-my-openagent.json` | Configuración operativa lista para copiar a `~/.config/opencode/` |
-| `PROMPT.md` | Instrucciones para recrear o actualizar esta configuración |
+| `PROMPT.md` | Prompt para recrear o actualizar esta configuración |
+| `docs/changelog-config.md` | Historial de cambios del JSON con justificación técnica |
+| `docs/prompt-auditoria.md` | Prompt para auditoría de modelos (copiar y pegar al inicio de sesión) |
 
 ## Instalación rápida
 
