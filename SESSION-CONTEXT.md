@@ -58,7 +58,7 @@ cp ~/.config/opencode/oh-my-openagent.json ~/git/opencode-omo-sota/opencode-go/
 
 ## Notas de mantenimiento
 
-- **Auditoría de modelos:** Usar `opencode-go/docs/audit-checklist.md` cada 30 días o cuando haya novedades en Go/AA. Contrasta benchmarks de Artificial Analysis con pricing real de OpenCode Go.
+- **Auditoría de modelos:** Copiar y pegar `opencode-go/docs/prompt-auditoria.md` al inicio de la sesión. El agente revisará el JSON contra Artificial Analysis y OpenCode Go, propondrá cambios si los hay, y esperará aprobación antes de tocar nada.
 - Si cambias un modelo en el JSON, actualizar CHANGELOG.md y changelog-config.md.
 - Los `.md` no deben listar modelos específicos (mantener JSON como fuente de verdad).
 - `setup.sh` sirve tanto para instalar como para auditar la configuración.
