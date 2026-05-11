@@ -22,18 +22,18 @@
       }
     },
     "hephaestus": {
-      "model": "opencode-go/deepseek-v4-pro",
+      "model": "opencode-go/deepseek-v4-flash",
       "fallback_models": [
-        "opencode-go/deepseek-v4-flash",
+        "opencode-go/deepseek-v4-pro",
         "opencode-go/kimi-k2.6"
       ],
       "prompt_append": "Explore thoroughly, then implement. Prefer small, testable changes."
     },
     "oracle": {
-      "model": "opencode-go/glm-5.1",
+      "model": "opencode-go/kimi-k2.6",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/deepseek-v4-pro"
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/qwen3.6-plus"
       ]
     },
     "librarian": {
@@ -44,11 +44,11 @@
       "model": "opencode-go/deepseek-v4-flash"
     },
     "multimodal-looker": {
-      "model": "opencode-go/mimo-v2.5",
-      "fallback_models": "opencode-go/qwen3.6-plus"
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": "opencode-go/kimi-k2.6"
     },
     "prometheus": {
-      "model": "opencode-go/glm-5.1",
+      "model": "opencode-go/kimi-k2.6",
       "fallback_models": [
         "opencode-go/qwen3.6-plus",
         "opencode-go/deepseek-v4-pro"
@@ -64,8 +64,11 @@
       "fallback_models": "opencode-go/kimi-k2.6"
     },
     "atlas": {
-      "model": "opencode-go/deepseek-v4-pro",
-      "fallback_models": "opencode-go/deepseek-v4-flash"
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/kimi-k2.6"
+      ]
     },
     "code-reviewer": {
       "model": "opencode-go/kimi-k2.6",
@@ -77,12 +80,15 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "opencode-go/mimo-v2.5",
-      "fallback_models": "opencode-go/qwen3.6-plus"
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": "opencode-go/kimi-k2.6"
     },
     "ultrabrain": {
-      "model": "opencode-go/glm-5.1",
-      "fallback_models": "opencode-go/kimi-k2.6"
+      "model": "opencode-go/kimi-k2.6",
+      "fallback_models": [
+        "opencode-go/glm-5.1",
+        "opencode-go/qwen3.6-plus"
+      ]
     },
     "deep": {
       "model": "opencode-go/kimi-k2.6",

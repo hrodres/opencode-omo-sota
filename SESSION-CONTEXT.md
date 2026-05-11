@@ -25,6 +25,7 @@ Nosotros lo hacemos manualmente para máximo control.
 3. **big-pickle excluido:** Si todos los modelos Go fallan, error limpio (no degradación silenciosa).
 4. **Zen on-demand:** Solo manual bajo demanda para arquitectura crítica o incidentes.
 5. **Repo-first:** `~/git/opencode-omo-sota/opencode-go/oh-my-openagent.json` lidera. La activa sigue.
+6. **Versionado SemVer:** Los cambios de config JSON van con git tags (`v1.0.0`, `v1.1.0`). Rollback: `git checkout <tag> -- json && ./setup.sh`.
 
 ## Comandos útiles
 

@@ -117,6 +117,14 @@ mkdir -p "$(dirname "${CONFIG_DST}")"
 cp "${CONFIG_SRC}" "${CONFIG_DST}"
 log_info "Config copied to: ${CONFIG_DST}"
 
+if command -v git &> /dev/null && git rev-parse --git-dir > /dev/null 2>&1; then
+    VERSION=$(git describe --tags --always 2>/dev/null || echo "unknown")
+    log_info "Config version: ${VERSION}"
+    if [ "${VERSION}" != "unknown" ]; then
+        log_info "Rollback: git checkout <tag> -- ${CONFIG_SRC}"
+    fi
+fi
+
 # Step 5: Verify models exist (if opencode CLI is available)
 if command -v opencode &> /dev/null; then
     log_info "Checking available models..."

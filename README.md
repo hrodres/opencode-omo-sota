@@ -99,6 +99,28 @@ Si necesitas instalar el software desde cero, sigue la guía completa en [`openc
 
 Para más detalles, ver [`opencode-go/README.md`](opencode-go/README.md).
 
+## Versionado y Rollback
+
+Las configuraciones JSON se versionan con [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) siguiendo [SemVer](https://semver.org/lang/es/).
+
+```bash
+# Ver versión actual
+git describe --tags --always
+
+# Instalar versión específica
+git checkout v1.1.0 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+
+# Volver a versión anterior
+git checkout v1.0.0 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+```
+
+| Versión | Descripción | Fecha |
+|---------|-------------|-------|
+| `v1.1.0` | Optimización: Kimi para Oracle/Prometheus/Ultrabrain, V4-Flash para Hephaestus/Atlas | 2026-05-11 |
+| `v1.0.0` | Configuración inicial estable | 2026-05-08 |
+
 ## Filosofía: Tiered Model Routing
 
 No uses un solo modelo para todo. Cada agente tiene un trabajo diferente y debe usar el modelo adecuado según complejidad y coste.
