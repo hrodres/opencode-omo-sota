@@ -70,10 +70,6 @@
         "opencode-go/kimi-k2.6"
       ]
     },
-    "code-reviewer": {
-      "model": "opencode-go/kimi-k2.6",
-      "fallback_models": "opencode-go/deepseek-v4-pro"
-    },
     "sisyphus-junior": {
       "model": "opencode-go/deepseek-v4-flash"
     }
