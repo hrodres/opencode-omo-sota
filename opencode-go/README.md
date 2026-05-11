@@ -74,9 +74,7 @@ opencode serve --hostname 127.0.0.1 --port 37915 &
 
 ## Arquitectura de esta configuración
 
-<p align="center">
-  <img src="../images/mapa-agentes.png" alt="Mapa de Agentes OpenCode" width="100%">
-</p>
+<img src="../images/mapa-agentes.png" alt="Mapa de Agentes OpenCode" width="100%">
 
 La configuración organiza los modelos en 3 tiers. Los modelos exactos, sus límites de requests y asignación por agente están definidos en [`oh-my-openagent.json`](oh-my-openagent.json).
 

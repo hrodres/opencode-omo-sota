@@ -3,9 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/hrodres/opencode-omo-sota)](https://github.com/hrodres/opencode-omo-sota/commits/main)
 
-<p align="center">
-  <img src="images/panteon-agentes.png" alt="Panteón de Agentes OpenCode" width="100%">
-</p>
+<img src="images/panteon-agentes.png" alt="Panteón de Agentes OpenCode" width="100%">
 
 > **Routing SOTA para OpenCode + OMO**
 >
