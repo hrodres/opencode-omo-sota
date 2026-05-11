@@ -1,6 +1,11 @@
 # Prompt para configurar/actualizar Oh My OpenAgent con OpenCode Go
 # Uso: Este prompt sirve tanto para configuración inicial como para actualizaciones
 
+> ⚠️ **ADVERTENCIA: Este prompt describe filosofía, NO modelos fijos.**
+> La asignación exacta de modelos por agente está en `oh-my-openagent.json`.
+> Los ejemplos de tiers abajo son ilustrativos y pueden estar desactualizados.
+> Siempre verifica disponibilidad actual con `opencode models opencode-go`.
+
 ## Contexto del sistema
 
 Tengo OpenCode + Oh My OpenAgent en un servidor LXC.
@@ -20,14 +25,12 @@ Configurar (o actualizar) oh-my-openagent.json para usar EXCLUSIVAMENTE modelos 
 1. SOLO usar modelos con prefijo `opencode-go/`
 2. NUNCA usar `opencode-zen` ni `opencode/` (modelos de pago) como fallback automático
 3. Los modelos de pago solo se usan si el usuario los selecciona EXPLÍCITAMENTE
-4. Mantener arquitectura por tiers (ejemplos según configuración actual — verificar con `opencode models opencode-go`):
-   - Tier 1 (Volumen): deepseek-v4-flash, qwen3.5-plus
-   - Tier 2 (Estándar): deepseek-v4-pro, qwen3.6-plus
-   - Tier 3 (Élite): kimi-k2.6, glm-5.1, mimo-v2.5
+4. Mantener arquitectura por tiers (ver disponibilidad real con `opencode models opencode-go`):
+   - Tier 1 (Volumen): modelos más rápidos y baratos para tareas simples
+   - Tier 2 (Estándar): balance calidad/coste para implementación
+   - Tier 3 (Élite): mayor inteligencia para orquestación y planificación
    
-   > ⚠️ **Estos son ejemplos ilustrativos.** Ejecuta `opencode models opencode-go` para ver disponibilidad real hoy. Si alguno fue retirado, reemplázalo por un equivalente del mismo tier.
-   
-   Nota: minimax-m2.5 y minimax-m2.7 están disponibles en Go pero no se usan en esta configuración por preferencia de calidad.
+   > La asignación exacta está en `oh-my-openagent.json`. No se duplica aquí.
 
 ## Pasos a seguir
 
