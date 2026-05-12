@@ -6,6 +6,20 @@
 
 ---
 
+## [1.2.0] - 2026-05-12
+
+### Configuración de modelos (JSON)
+
+- **Artistry**: `glm-5.1` → `mimo-v2.5-pro` (fallback: `qwen3.6-plus`)
+  - AA Intelligence Index: 44/51 → 54. Empatado #1 open-weights con Kimi K2.6.
+  - SWE-Bench Pro: 57.2%, supera a Claude Opus 4.6 (53.4%).
+  - Eficiencia: 40-60% menos tokens en tareas agenticas vs modelos equivalentes.
+- **Ultrabrain fallback[0]**: `glm-5.1` → `mimo-v2.5-pro`
+
+Ver `opencode-go/docs/changelog-config.md` para análisis técnico completo.
+
+---
+
 ## [1.1.2] - 2026-05-11
 
 ### Configuración de modelos (JSON)

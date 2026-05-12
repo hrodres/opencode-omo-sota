@@ -82,7 +82,7 @@
     "ultrabrain": {
       "model": "opencode-go/kimi-k2.6",
       "fallback_models": [
-        "opencode-go/glm-5.1",
+        "opencode-go/mimo-v2.5-pro",
         "opencode-go/qwen3.6-plus"
       ]
     },
@@ -91,7 +91,7 @@
       "fallback_models": "opencode-go/deepseek-v4-pro"
     },
     "artistry": {
-      "model": "opencode-go/glm-5.1",
+      "model": "opencode-go/mimo-v2.5-pro",
       "fallback_models": "opencode-go/qwen3.6-plus"
     },
     "quick": {

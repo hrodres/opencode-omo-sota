@@ -5,6 +5,36 @@
 
 ---
 
+## [1.2.0] - 2026-05-12
+
+### Changed
+
+- **Artistry**: `glm-5.1` → `mimo-v2.5-pro`
+  - Inteligencia (AA Index): 44/51 → 54 (+6-22%)
+  - Costo Go blended: $2.15 → $1.00 (-53% input)
+  - Eficiencia: 40-60% menos tokens en tareas agenticas (ClawEval)
+  - Contexto: 203K → 1M tokens
+  - Fallback: `qwen3.6-plus` (sin cambios)
+
+- **Ultrabrain fallback[0]**: `glm-5.1` → `mimo-v2.5-pro`
+  - Misma mejora que Artistry. Fallback de hard logic necesita el máximo IQ disponible.
+  - Fallbacks: `mimo-v2.5-pro`, `qwen3.6-plus`
+
+### Rationale
+
+Fuente: [Artificial Analysis](https://artificialanalysis.ai/models/mimo-v2-5-pro) (abril 2026) + [OpenCode Go](https://opencode.ai/docs/go) (mayo 2026).
+
+MiMo-V2.5-Pro (Xiaomi) alcanza 54 en AA Intelligence Index, empatado con Kimi K2.6 como #1 open-weights. Supera a GLM-5.1 en ambas variantes (non-reasoning 44, reasoning 51). En benchmarks agenticos reales (SWE-Bench Pro 57.2%, ClawEval 64% Pass³), compite con GPT-5.4 y supera a Claude Opus 4.6. Disponible en OpenCode Go como `opencode-go/mimo-v2.5-pro` con 1,290 req/$12.
+
+### Rollback
+
+```bash
+git checkout v1.1.2 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+```
+
+---
+
 ## [1.1.2] - 2026-05-11
 
 ### Fixed
