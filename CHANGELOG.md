@@ -6,6 +6,14 @@
 
 ---
 
+## [1.2.1] - 2026-05-12
+
+### Configuración de modelos (JSON)
+
+- **modelConcurrency**: eliminada entrada obsoleta `glm-5.1: 1`, añadida `mimo-v2.5-pro: 2`
+
+---
+
 ## [1.2.0] - 2026-05-12
 
 ### Configuración de modelos (JSON)

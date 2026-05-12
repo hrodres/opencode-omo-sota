@@ -5,6 +5,23 @@
 
 ---
 
+## [1.2.1] - 2026-05-12
+
+### Fixed
+
+- **modelConcurrency**: eliminada entrada obsoleta `glm-5.1: 1`, añadida `mimo-v2.5-pro: 2`
+  - Inconsistencia introducida en v1.2.0: se reemplazó glm-5.1 en agentes y categorías pero no se actualizó el mapeo de concurrencia.
+  - `mimo-v2.5-pro` se usa en 2 sitios (artistry primario, ultrabrain fallback), por lo que `: 2` es el valor correcto.
+
+### Rollback
+
+```bash
+git checkout v1.2.0 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+```
+
+---
+
 ## [1.2.0] - 2026-05-12
 
 ### Changed
