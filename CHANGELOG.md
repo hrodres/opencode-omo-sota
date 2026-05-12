@@ -6,6 +6,14 @@
 
 ---
 
+## [1.1.1] - 2026-05-11
+
+### Configuración de modelos (JSON)
+
+- Eliminado agente `code-reviewer` (OMO no lo reconoce como agente válido; era configuración muerta)
+
+---
+
 ## [1.1.0] - 2026-05-11
 
 ### Configuración de modelos (JSON)

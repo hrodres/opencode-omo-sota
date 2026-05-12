@@ -5,6 +5,16 @@
 
 ---
 
+## [1.1.1] - 2026-05-11
+
+### Fixed
+
+- **code-reviewer**: eliminado del JSON. OMO no reconoce este agente.
+  - `ALLOWED_AGENTS` de `call_omo_agent` solo acepta: explore, librarian, oracle, hephaestus, metis, momus, multimodal-looker
+  - La configuración era ignorada silenciosamente por el runtime
+
+---
+
 ## [1.1.0] - 2026-05-11
 
 ### Changed
