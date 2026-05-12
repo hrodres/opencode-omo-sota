@@ -123,6 +123,8 @@
     }
   },
   "git_master": {
-    "include_co_authored_by": false
+    "include_co_authored_by": false,
+    "commit_footer": true,
+    "git_env_prefix": "GIT_MASTER=1"
   }
 }
