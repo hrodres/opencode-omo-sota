@@ -6,6 +6,14 @@
 
 ---
 
+## [1.1.2] - 2026-05-11
+
+### Configuración de modelos (JSON)
+
+- Añadidos campos faltantes `commit_footer` y `git_env_prefix` en `git_master` (schema validation fix)
+
+---
+
 ## [1.1.1] - 2026-05-11
 
 ### Configuración de modelos (JSON)

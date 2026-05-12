@@ -5,6 +5,14 @@
 
 ---
 
+## [1.1.2] - 2026-05-11
+
+### Fixed
+
+- **git_master**: añadidos `commit_footer` y `git_env_prefix` requeridos por el schema
+
+---
+
 ## [1.1.1] - 2026-05-11
 
 ### Fixed
