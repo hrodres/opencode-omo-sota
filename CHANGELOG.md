@@ -6,6 +6,14 @@
 
 ---
 
+## [1.2.2] - 2026-05-12
+
+### Configuración de modelos (JSON)
+
+- **Hephaestus**: añadido `allow_non_gpt_model: true` para señalizar uso intencional de modelo no-GPT
+
+---
+
 ## [1.2.1] - 2026-05-12
 
 ### Configuración de modelos (JSON)

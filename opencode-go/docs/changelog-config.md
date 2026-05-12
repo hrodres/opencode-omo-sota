@@ -5,6 +5,24 @@
 
 ---
 
+## [1.2.2] - 2026-05-12
+
+### Added
+
+- **Hephaestus**: `allow_non_gpt_model: true`
+  - Señaliza explícitamente que el uso de `deepseek-v4-flash` en Hephaestus es intencional.
+  - Suprime el hook `noHephaestusNonGpt` que bloquea a Hephaestus de usar modelos no-GPT.
+  - Campo válido solo para Hephaestus según schema oficial de OMO.
+
+### Rollback
+
+```bash
+git checkout v1.2.1 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+```
+
+---
+
 ## [1.2.1] - 2026-05-12
 
 ### Fixed

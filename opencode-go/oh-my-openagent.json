@@ -23,6 +23,7 @@
     },
     "hephaestus": {
       "model": "opencode-go/deepseek-v4-flash",
+      "allow_non_gpt_model": true,
       "fallback_models": [
         "opencode-go/deepseek-v4-pro",
         "opencode-go/kimi-k2.6"
