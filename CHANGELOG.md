@@ -6,6 +6,18 @@
 
 ---
 
+## [1.3.1] - 2026-05-12
+
+### Documentación
+
+- Añadido `opencode-go/docs/metodologia.md` — guía de uso calibrada para preset Go-only
+  - Cuándo usar cada modo (ulw, Prometheus, chat, explore)
+  - Señales de modo equivocado
+  - Contexto entre sesiones (/init-deep, .sisyphus/)
+  - Limitaciones del setup Go-only
+
+---
+
 ## [1.3.0] - 2026-05-12
 
 ### Configuración de modelos (JSON)

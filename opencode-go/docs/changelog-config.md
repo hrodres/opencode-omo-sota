@@ -5,6 +5,19 @@
 
 ---
 
+## [1.3.1] - 2026-05-12
+
+### Added
+
+- **Documentacion de uso**: `opencode-go/docs/metodologia.md`
+  - Guia calibrada para el preset `opencode-go` (sin OpenAI).
+  - Cuando usar cada modo: `ulw`, Prometheus, `task(category="chat")`, Explore/Librarian.
+  - Senales de modo equivocado y regla central: "La quota se agota cuando usas Sisyphus como chat."
+  - Contexto entre sesiones: `/init-deep` vs `.sisyphus/`.
+  - Limitaciones del setup Go-only (Hephaestus, sin Team Mode).
+
+---
+
 ## [1.3.0] - 2026-05-12
 
 ### Changed
