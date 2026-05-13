@@ -5,6 +5,53 @@
 
 ---
 
+## [1.3.0] - 2026-05-12
+
+### Changed
+
+- **Hephaestus**: `deepseek-v4-flash` → `deepseek-v4-pro` (modelo principal)
+  - Recupera el rol de "especialista profundo" con modelo acorde (IQ 52 vs 47).
+  - Fallback reordenado: `[deepseek-v4-pro, kimi-k2.6]` → `[kimi-k2.6]`.
+  - Coste: 9x más caro (3,450 vs 31,650 req/$12). Impacto significativo si se activa frecuentemente.
+
+- **Artistry**: `mimo-v2.5-pro` → `qwen3.6-plus` (modelo principal)
+  - Cambio crítico: qwen3.6-plus tiene soporte de visión; mimo-v2.5-pro no.
+  - Pierde 4 puntos de IQ (50 vs 54) pero gana capacidad multimodal esencial para UI/creatividad.
+  - Fallback reordenado: `qwen3.6-plus` → `kimi-k2.6`.
+
+- **Librarian fallback**: `qwen3.5-plus` (string) → `[qwen3.6-plus, minimax-m2.7]` (array)
+  - Elimina el modelo más barato pero de menor calidad del fallback.
+
+- **Resiliencia general**: añadidos fallbacks a agentes/categorías que carecían de ellos:
+  - `explore`: `[minimax-m2.7]`
+  - `sisyphus-junior`: `[deepseek-v4-pro]`
+  - `quick`: `[minimax-m2.7]`
+  - `unspecified-low`: `[deepseek-v4-pro]`
+  - `writing`: `[minimax-m2.7]`
+
+- **modelConcurrency**: ajustes proporcionales al nuevo uso
+  - `deepseek-v4-pro`: 3 → 6 (Hephaestus ahora lo usa como primario)
+  - `qwen3.6-plus`: 5 → 6 (usado en 5+ agentes/categorías)
+  - `minimax-m2.7`: 6 añadido (nuevo fallback en múltiples sitios)
+  - `deepseek-v4-flash`: 20 (sin cambios, sigue siendo el modelo más usado)
+
+### Rationale
+
+Configuración más robusta y coherente:
+- Hephaestus recupera su rol nativo con modelo de deep work (deepseek-v4-pro)
+- Artistry gana visión multimodal, esencial para trabajo UI/frontend
+- Cobertura de fallbacks completa: cada agente/categoría tiene al menos un fallback
+- modelConcurrency refleja uso real y evita throttling
+
+### Rollback
+
+```bash
+git checkout v1.2.2 -- opencode-go/oh-my-openagent.json
+./setup.sh opencode-go
+```
+
+---
+
 ## [1.2.2] - 2026-05-12
 
 ### Added

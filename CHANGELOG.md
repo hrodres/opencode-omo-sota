@@ -6,6 +6,20 @@
 
 ---
 
+## [1.3.0] - 2026-05-12
+
+### Configuración de modelos (JSON)
+
+- **Hephaestus**: `deepseek-v4-flash` → `deepseek-v4-pro` (fallback: `kimi-k2.6`)
+- **Artistry**: `mimo-v2.5-pro` → `qwen3.6-plus` (fallback: `kimi-k2.6`) — cambio crítico para visión multimodal
+- **Librarian fallback**: `qwen3.5-plus` → `[qwen3.6-plus, minimax-m2.7]`
+- **Resiliencia**: fallbacks añadidos a `explore`, `sisyphus-junior`, `quick`, `unspecified-low`, `writing`
+- **modelConcurrency**: `deepseek-v4-pro` 3→6, `qwen3.6-plus` 5→6, `minimax-m2.7` 6 añadido
+
+Ver `opencode-go/docs/changelog-config.md` para análisis técnico completo.
+
+---
+
 ## [1.2.2] - 2026-05-12
 
 ### Configuración de modelos (JSON)
